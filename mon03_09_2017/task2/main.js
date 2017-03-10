@@ -9,8 +9,10 @@ function Summ(value1, value2) {
             return true;
         }
     }
-    if (validation(value1) & validation(value2)) {
+    if (validation(value1)) {
         _firstNumber = value1;
+    }
+    if (validation(value2)) {
         _secondNumber = value2;
     }
 
@@ -19,13 +21,25 @@ function Summ(value1, value2) {
         this.result = _firstNumber + _secondNumber;
         console.log('Result = ', this.result);
     }
+    
     this.firstNumber = function (val) {
         if (val === undefined) {
             return _firstNumber;
         }
         if (validation(val)) {
             _firstNumber = val;
+            // 1-st method: 
+            calc.call(this);
+            // 2-d method: 
+            calc.apply(this);
+            
+            // 3-th method:
+            var f = calc.bind(this);
+            f();
+            // 4-th method: with anonym function?
             calc();
+            
+            // 5-d method: self
         }
     }
     this.secondNumber = function (val) {
@@ -34,7 +48,7 @@ function Summ(value1, value2) {
         }
         if (validation(val)) {
             _secondNumber = val;
-            calc();
+            calc.call(this);
         }
     }
 
