@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h5>Задание №2. Функция как объект Напишите функцию mul(), которая принимает любое количество параметров разного типа и возвращает
+        произведение параметров типа Number. Если параметры типа Number отсутствуют, возвращает число 0. function mul() {
+        // Ваш код } console.log(mul(1, &quot;str&quot;, 2, 3, true)); // 6 console.log(mul(null, &quot;str&quot;, false,
+        true));
+    </h5>
+</body>
+<script>
+    'use strict';
+
+    function mul() {
+        var result = 1;
+        var check = true;
+        for (var i = 0; i < arguments.length; i++) {
+            if (typeof arguments[i] === "number") {
+                result *= arguments[i];
+                check = false;
+            }
+        }
+        if (check) {
+            result = 0
+        };
+        return result;
+
+
+    }
+
+    console.log('Result: ' + mul(1, "str", 2, 3, true));
+    console.log('Result 2: ' + mul(null, "str", false, true));
+</script>
+
+</html>
