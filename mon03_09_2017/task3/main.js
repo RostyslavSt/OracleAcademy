@@ -1,46 +1,89 @@
 'use strict';
 
-function Summ(value1, value2) {
-    var _firstNumber = null;
-    var _secondNumber = null;
+function CreateFigure(num1, num2) {
+    var x = null;
+    var y = null;
 
-    function validation(num) {
-        if (typeof (num) === 'number') {
+    function vdn(val) {
+        if (typeof (val) === 'number') {
             return true;
         }
     }
-    if (validation(value1) & validation(value2)) {
-        _firstNumber = value1;
-        _secondNumber = value2;
+    if (vdn(num1)) {
+        x = num1;
+    }
+    if (vdn(num2)) {
+        y = num2;
     }
 
-    this.result = null;
-    var calc = function () {
-        this.result = _firstNumber + _secondNumber;
-        console.log('Result = ', this.result);
-    }
-    this.firstNumber = function (val) {
+    this.pointX = function (val) {
         if (val === undefined) {
-            return _firstNumber;
+            return x;
         }
-        if (validation(val)) {
-            _firstNumber = val;
-            calc();
+        if (vdn(val)) {
+            x = val;
         }
     }
-    this.secondNumber = function (val) {
+    this.pointY = function (val) {
         if (val === undefined) {
-            return _secondNumber;
+            return y;
         }
-        if (validation(val)) {
-            _secondNumber = val;
-            calc();
+        if (vdn(val)) {
+            y = val;
         }
     }
 
-    this.showNumbers = function () {
-        console.log('firstNumber: ' + _firstNumber + '  ' + 'secondNumber: ' + _secondNumber);
+    this.showPoint = function () {
+        console.log('x:', x + '  ' + 'y:', y);
+    }
+}
+
+//creating rectangle
+function Rectangle(num1, num2, dioganal) {
+    CreateFigure.apply(this, arguments);
+    var _dioganal = dioganal;
+    var x = arguments[0];
+    var y = arguments[1];
+
+    var objProperties = {
+        pointX: x,
+        pointY: y,
+        dioganal: _dioganal
+    };
+
+    this.info = function () {
+        for (var item in objProperties) {
+            console.log(item + ': ' + objProperties[item])
+        }
     }
 
 }
-var todo = new Summ(5, 3);
+
+//creating round
+function Round(num1, num2, radius) {
+    CreateFigure.apply(this, arguments);
+    var _radius = radius;
+    var x = arguments[0];
+    var y = arguments[1];
+
+    var objProperties = {
+        pointX: x,
+        pointY: y,
+        radius: _radius
+    };
+
+    this.info = function () {
+        for (var item in objProperties) {
+            console.log(item + ': ' + objProperties[item])
+        }
+    }
+
+}
+
+
+var figure = new CreateFigure(5, 7);
+var rectangle = new Rectangle(10, 12, 55);
+var round = new Round(5, 4, 16);
+console.dir(figure);
+console.dir(rectangle);
+console.dir(round);
