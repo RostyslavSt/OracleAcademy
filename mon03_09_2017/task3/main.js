@@ -41,13 +41,12 @@ function CreateFigure(num1, num2) {
 //creating rectangle
 function Rectangle(num1, num2, dioganal) {
     CreateFigure.apply(this, arguments);
+    console.log(arguments);
     var _dioganal = dioganal;
-    var x = arguments[0];
-    var y = arguments[1];
 
     var objProperties = {
-        pointX: x,
-        pointY: y,
+        X: this.pointX(),
+        Y: this.pointY(),
         dioganal: _dioganal
     };
 
@@ -62,13 +61,12 @@ function Rectangle(num1, num2, dioganal) {
 //creating round
 function Round(num1, num2, radius) {
     CreateFigure.apply(this, arguments);
+
     var _radius = radius;
-    var x = arguments[0];
-    var y = arguments[1];
 
     var objProperties = {
-        pointX: x,
-        pointY: y,
+        X: this.pointX(),
+        Y: this.pointY(),
         radius: _radius
     };
 
