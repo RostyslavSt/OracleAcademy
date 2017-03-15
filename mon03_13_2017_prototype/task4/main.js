@@ -28,9 +28,9 @@ var rectangle = (function square(a, b) {
 
     return {
         calcArea: function () {
-            return calcAarea();
+            return calcArea();
         },
-        perimetr: function () {
+        calcPerimetr: function () {
             return calcPerimetr();
         },
         setSideA: function (newSideA) {
@@ -52,4 +52,7 @@ var rectangle = (function square(a, b) {
 
 // rectangle;
 // debugger;
-console.log(rectangle(3,2));
+rectangle.setSideA(5);
+rectangle.setSideB(3);
+
+console.log(rectangle.calcArea());
