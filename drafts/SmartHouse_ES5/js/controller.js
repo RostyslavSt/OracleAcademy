@@ -1,26 +1,34 @@
 'use strict';
 
 function Controller(tvModel, view) {
-    // view.renderTemplateTV(view.tvParent);
-    // debugger;
-    view.renderTvInfo();
     view.tvContainer.addEventListener('click', function (event) {
-        console.log(event.target.id);
-        if ()
-        
-        // tvModel.volumeUp();
-        // view.renderTvInfo();
+        switch (event.target.id) {
+            case 'power':
+                console.log('ass');
+                tvModel.turnOnOff();
+                view.renderTvInfo();
+                break;
+            case 'volumeUp':
+                tvModel.volumeUp();
+                view.renderTvInfo();
+                break;
+            case 'volumeDown':
+                tvModel.volumeDown();
+                view.renderTvInfo();
+                break;
+            case 'volumeOff':
+                tvModel.volumeOff();
+                view.renderTvInfo();
+                break;
+            case 'nextChannel':
+                tvModel.nextChannel();
+                view.renderTvInfo();
+                break;
+            case 'prevChannel':
+                tvModel.prevChannel();
+                view.renderTvInfo();
+                break;
+        }
     });
-     view.volumeDownBtn.addEventListener('click', function () {
-        tvModel.volumeDown();
-        view.renderTvInfo();
-    });
-    //  view.volumeUpBtn.addEventListener('click', function () {
-    //     tvModel.volumeUp();
-    //     view.renderTvInfo();
-    // });
-    //  view.volumeUpBtn.addEventListener('click', function () {
-    //     tvModel.volumeUp();
-    //     view.renderTvInfo();
-    // });
+
 }

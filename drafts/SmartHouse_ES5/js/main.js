@@ -7,12 +7,12 @@ var lampModel = new Lamp('maxus');
 var conditionerModel = new Conditioner('Samsung');
 
 //view objects
-var view = new View(tvModel);
+var viewTv = new View(tvModel);
+// var viewRefr = new View(viewRefr);
 
 
 //controller
-var controller = new Controller(tvModel, view);
+var controller = new Controller(tvModel, viewTv);
 
 
 
-// var controller = new Controller();
