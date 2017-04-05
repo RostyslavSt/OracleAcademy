@@ -1,8 +1,16 @@
 'use strict';
 
-function Controller(tvModel, view) {
+function Controller(tvModel, view, creator) {
+
+    view.buttonCreator.addEventListener('click', function(event) {
+
+        creator.designDevice('tv', 'lg');
+        // view.renderTemplateTV();
+
+    });
+
     view.tvContainer.addEventListener('click', function(event) {
-        switch (event.target.id) {
+        switch (event.target.getAttribute('name')) {
             case 'power':
                 tvModel.turnOnOff();
                 view.renderTvInfo();

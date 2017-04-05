@@ -1,15 +1,5 @@
 'use strict';
 
-
-function CreateDevice(type, name) {
-    this._type = type;
-    this._name = name;
-    this.devices = []
-
-}
-CreateDe
-
-
 //base CLASS
 function baseClass(name) {
     this.isOn = false;
@@ -20,11 +10,12 @@ baseClass.prototype.turnOnOff = function() {
 }
 
 //TV CLASS
-var listChannel = ['discovery', 'sport', 'science', 'education', 'music', 'fishing', 'motosport', 'formula 1'];
+
 
 function Tv(name, listChannel) {
     baseClass.apply(this, [name]);
-    this.listChannel = listChannel;
+    this._type = 'tv';
+    this.listChannel = listChannel || ['discovery', 'sport', 'science', 'education', 'music', 'fishing', 'motosport', 'formula 1'];;
     this.currentChannel = 0;
     this.volume = 4;
 }
@@ -66,6 +57,7 @@ var produсts = ['milk', 'meat', 'soup', 'sandwich'];
 
 function Refrigerator(name, products) {
     baseClass.apply(this, [name]);
+    this._type = 'refrigerator';
     this.temperature = 5;
     this.products = products;
 }

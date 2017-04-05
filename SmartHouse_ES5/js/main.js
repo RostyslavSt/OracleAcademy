@@ -1,17 +1,16 @@
 'use strict';
 
 //model objects
-var tvModel = new Tv('Sony', listChannel);
+var tvModel = new Tv('Sony');
 var refrModel = new Refrigerator('Bosh');
+
+//device's creator
+var creator = new CreateDevice();
+
 
 
 //view objects
 var viewTv = new View(tvModel);
-// var viewRefr = new View(viewRefr);
-
 
 //controller
-var controller = new Controller(tvModel, viewTv);
-
-
-
+var controller = new Controller(tvModel, viewTv, creator);
