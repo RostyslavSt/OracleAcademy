@@ -7,11 +7,11 @@ CreateDevice.prototype.designDevice = function(type, name) {
     var newDevice = null;
     switch (type) {
         case 'tv':
-            newDevice = new Tv(type, name);
+            newDevice = new Tv(name);
             this.devices.push(newDevice);
             break;
         case 'refrigerator':
-            newDevice = new Refrigerator(type, name);
+            newDevice = new Refrigerator(name);
             this.devices.push(newDevice);
             break;
     }
@@ -19,6 +19,3 @@ CreateDevice.prototype.designDevice = function(type, name) {
 
 
 var creator = new CreateDevice();
-// creator.designDevice('tv', 'sony');
-// creator.designDevice('refrigerator', 'bosh');
-// creator.designDevice('tv', 'samsung');

@@ -10,7 +10,9 @@ var creator = new CreateDevice();
 
 
 //view objects
-var viewTv = new View(tvModel);
+var view = new View();
 
 //controller
-var controller = new Controller(tvModel, viewTv, creator);
+var controller = new Controller(tvModel, view, creator);
+
+view.renderDevices();

@@ -1,10 +1,10 @@
-
 /*TV*/
 
 .tv-container {
     padding: 3px;
     border: 1px solid #000;
     border-radius: 5px;
+    margin: 10px 10px;
 }
 
 .tv-info {
@@ -12,7 +12,6 @@
     border: 1px solid #000;
     border-radius: 5px;
     margin-bottom: 5px;
-    
 }
 
 

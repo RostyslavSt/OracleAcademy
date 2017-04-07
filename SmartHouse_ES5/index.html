@@ -16,29 +16,32 @@
 
     <div class="row">
 
-        <div class="panel panel-success col-md-12">
+        <div class="panel panel-success col-md-4">
             <div class="panel-heading">
                 <h3 class="panel-title">KITCHEN</h3>
             </div>
             <div class="panel-body">
-                <form>
-                    <fieldset>
-                        <input type="text" name="device" value="" placeholder="Enter name of device" required>
-                        <select name="device">
-                            <option value="tv">TV</option>
-                            <option value="refrigerator">Refrigerator</option>
-                        </select>
-                        <button name="submit" class="add-device-btn">add device</button>
-                    </fieldset>
-                </form>
-                <div class="tv-wrapper"></div>
+                <input type="text" name="device" value="" placeholder="Enter name of device">
+                <select name="device">
+                    <option value="tv">TV</option>
+                    <option value="refrigerator">Refrigerator</option>
+                </select>
+                <button class="add-device-btn">add device</button>
+
+                <div class="device-wrapper">
+                    <ul class="device-list">
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src='./js/model.js'></script>
-    <script src='./js/modelDeviceCreator.js'></script>
+    <script src='./js/model/baseclass.js'></script>
+    <script src='./js/model/tv.js'></script>
+    <script src='./js/model/refrigerator.js'></script>
+    <script src='./js/model/modelDeviceCreator.js'></script>
     <script src='./js/view.js'></script>
     <script src='./js/controller.js'></script>
     <script src='./js/main.js'></script>
