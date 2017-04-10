@@ -16,6 +16,13 @@ CreateDevice.prototype.designDevice = function(type, name) {
             break;
     }
 }
+CreateDevice.prototype.removeDevice = function(idDevice) {
+    creator.devices.forEach(function(item, index) {
+        if (idDevice === item._id) {
+            creator.devices.splice(index, 1);
+        }
+    });
+}
 
 
 var creator = new CreateDevice();

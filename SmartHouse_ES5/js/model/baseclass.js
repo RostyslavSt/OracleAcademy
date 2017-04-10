@@ -2,7 +2,7 @@
 
 //base CLASS
 function baseClass(name) {
-    this._id = Date.now() + 15;
+    this._id = Date.now() - 15;
     this.isOn = false;
     this.name = name || 'noName';
 }

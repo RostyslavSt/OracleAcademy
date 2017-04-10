@@ -1,18 +1,29 @@
 'use strict';
 
-function Controller(tvModel, view, creator) {
+function Controller(tvModel, refrModel, view, creator) {
     var self = this;
 
     view.buttonCreator.addEventListener('click', function(event) {
-        creator.designDevice('tv', 'lg');
+        creator.designDevice(view.typeDevice.value, view.nameDevice.value);
+        // console.log('');
         view.renderDevices();
     });
 
     view.deviceList.addEventListener('click', function(event) {
+
         var idDevice = parseInt(event.target.closest('li').id);
         var buttonDevice = event.target.getAttribute('name');
+
+        //there we handle with devices
+        if (event.target.classList.contains('remove-device')) {
+            creator.removeDevice(idDevice);
+            view.renderDevices();
+        }
         self.editDevices(idDevice, buttonDevice);
         view.renderDevices();
+
+        //there we handle with products
+
     });
 }
 
@@ -49,11 +60,24 @@ Controller.prototype.editDevices = function(idDevice, buttonDevice) {
                         item.prevChannel();
                     }
                     break;
+                case 'tempUp':
+                    if (item.isOn === true) {
+                        item.tempUp();
+                    }
+                    break;
+                case 'tempDown':
+                    if (item.isOn === true) {
+                        item.tempDown();
+                    }
+                    break;
             }
         }
     });
 }
 
+Controller.prototype.removeDevice = function(idDevice) {
+    creator.removeDevice(idDevice);
+}
 
 
 //  if (idDevice === item._id) {
