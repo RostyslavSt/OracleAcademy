@@ -39,6 +39,21 @@
         border-radius: 5px;
         margin: 10px 10px;
     }
+    
+    .freezing-camera-container {
+        padding: 3px;
+        border: 1px dashed #000;
+        border-radius: 5px;
+        margin: 10px 10px;
+    }
+    
+    .fa-thermometer-empty {
+        color: red;
+    }
+    
+    .fa-snowflake-o {
+        color: blue;
+    }
     /*.tv {
     max-width: 50%;
     max-height: 50px;

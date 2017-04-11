@@ -20,10 +20,45 @@ function Controller(tvModel, refrModel, view, creator) {
             view.renderDevices();
         }
         self.editDevices(idDevice, buttonDevice);
-        view.renderDevices();
 
-        //there we handle with products
 
+        //there we handle with refrigarator containers(products)
+        if (event.target.classList.contains('add-product-cooling')) {
+            var typeContainer = 'coolingCamera';
+            var currentDevice = event.target.closest('li');
+            var currentProductGroup = currentDevice.querySelector('.cooling-camera-list');
+            var currentNameProduct = currentDevice.querySelector('.name-product-cooling').value;
+            refrModel.addProduct(idDevice, typeContainer, currentNameProduct);
+            currentDevice.querySelector('.name-product-cooling').value = "";
+
+            console.log(idDevice);
+            // console.log(currentDevice);
+            // console.log(currentProductGroup);
+            console.log(currentNameProduct);
+
+
+            // view.renderProducts();
+            // self.removeDevice(idDevice);
+            // view.renderDevices();
+        }
+
+        if (event.target.classList.contains('add-product-freezing')) {
+            var typeContainer = 'freezingCamera';
+            var currentDevice = event.target.closest('li');
+            var currentProductGroup = currentDevice.querySelector('.freezing-camera-list');
+            var currentNameProduct = currentDevice.querySelector('.name-product-freezing').value;
+            refrModel.addProduct(idDevice, typeContainer, currentNameProduct);
+            currentDevice.querySelector('.name-product-freezing').value = "";
+
+            // console.log(idDevice);
+            // console.log(currentDevice);
+            // console.log(currentProductGroup);
+            // console.log(currentNameProduct);
+
+            // view.renderProducts();
+            // self.removeDevice(idDevice);
+            // view.renderDevices();
+        }
     });
 }
 
@@ -34,40 +69,48 @@ Controller.prototype.editDevices = function(idDevice, buttonDevice) {
             switch (buttonDevice) {
                 case 'power':
                     item.turnOnOff();
+                    view.renderDevices();
                     break;
                 case 'volumeUp':
                     if (item.isOn === true) {
                         item.volumeUp();
+                        view.renderDevices();
                     }
                     break;
                 case 'volumeDown':
                     if (item.isOn === true) {
                         item.volumeDown();
+                        view.renderDevices();
                     }
                     break;
                 case 'volumeOff':
                     if (item.isOn === true) {
                         item.volumeOff();
+                        view.renderDevices();
                     }
                     break;
                 case 'nextChannel':
                     if (item.isOn === true) {
                         item.nextChannel();
+                        view.renderDevices();
                     }
                     break;
                 case 'prevChannel':
                     if (item.isOn === true) {
                         item.prevChannel();
+                        view.renderDevices();
                     }
                     break;
                 case 'tempUp':
                     if (item.isOn === true) {
                         item.tempUp();
+                        view.renderDevices();
                     }
                     break;
                 case 'tempDown':
                     if (item.isOn === true) {
                         item.tempDown();
+                        view.renderDevices();
                     }
                     break;
             }

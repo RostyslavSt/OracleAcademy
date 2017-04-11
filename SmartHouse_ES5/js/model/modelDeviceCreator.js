@@ -11,7 +11,9 @@ CreateDevice.prototype.designDevice = function(type, name) {
             this.devices.push(newDevice);
             break;
         case 'refrigerator':
-            newDevice = new Refrigerator(name);
+            var coolingBox = new CoolingBox();
+            var freezingBox = new FreezingBox();
+            newDevice = new Refrigerator(name, coolingBox, freezingBox);
             this.devices.push(newDevice);
             break;
     }
@@ -23,6 +25,3 @@ CreateDevice.prototype.removeDevice = function(idDevice) {
         }
     });
 }
-
-
-var creator = new CreateDevice();
