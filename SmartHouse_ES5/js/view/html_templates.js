@@ -1,3 +1,5 @@
+'use strict';
+
 function Templates() {
     this.tv = `<li class="tv-container" id="{{tv-id}}">
         <div class="remove-device-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
@@ -25,7 +27,7 @@ function Templates() {
             <input class="name-product-cooling" type="text" placeholder="Enter name of product">
             <button class="add-product-cooling">Add product</button>
             <ul class="cooling-camera-list">
-
+                {{cooling-camera-list}}
             </ul>
         </div>
         <p>Freezing camera
@@ -37,7 +39,7 @@ function Templates() {
             <input class="name-product-freezing" type="text" placeholder="Enter name of product">
             <button class="add-product-freezing">Add product</button>
             <ul class="freezing-camera-list">
-
+                {{freezing-camera-list}}
             </ul>
         </div>
         <button type="button" name="power" class="power btn btn-danger btn-xs"><i class="fa fa-power-off" aria-hidden="true"></i> Power</button>
@@ -45,8 +47,8 @@ function Templates() {
         <button type="button" name="tempDown" class="tempDown btn btn-success btn-xs glyphicon glyphicon-minus"></i></button>
     </li>`;
 
-    this.ProductContainer = `<li id={{id-product}}>
-        <div class="remove-product-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
+    this.productContainer = `<li class="item-product" id={{id-product}}>
+        <div class="remove-product-block"><div class="remove-product glyphicon glyphicon-remove"></div></div>
         <p class="name-product">{{name-product}}</p>
     </li>`;
 };

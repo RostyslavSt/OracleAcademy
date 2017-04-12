@@ -5,7 +5,6 @@ function Controller(tvModel, refrModel, view, creator) {
 
     view.buttonCreator.addEventListener('click', function(event) {
         creator.designDevice(view.typeDevice.value, view.nameDevice.value);
-        // console.log('');
         view.renderDevices();
     });
 
@@ -21,43 +20,33 @@ function Controller(tvModel, refrModel, view, creator) {
         }
         self.editDevices(idDevice, buttonDevice);
 
-
         //there we handle with refrigarator containers(products)
         if (event.target.classList.contains('add-product-cooling')) {
-            var typeContainer = 'coolingCamera';
+            var typeContainer = 'cooling-camera-list';
             var currentDevice = event.target.closest('li');
             var currentProductGroup = currentDevice.querySelector('.cooling-camera-list');
             var currentNameProduct = currentDevice.querySelector('.name-product-cooling').value;
             refrModel.addProduct(idDevice, typeContainer, currentNameProduct);
             currentDevice.querySelector('.name-product-cooling').value = "";
-
-            console.log(idDevice);
-            // console.log(currentDevice);
-            // console.log(currentProductGroup);
-            console.log(currentNameProduct);
-
-
-            // view.renderProducts();
-            // self.removeDevice(idDevice);
-            // view.renderDevices();
+            view.renderProducts(idDevice, typeContainer);
         }
 
         if (event.target.classList.contains('add-product-freezing')) {
-            var typeContainer = 'freezingCamera';
+            var typeContainer = 'freezing-camera-list';
             var currentDevice = event.target.closest('li');
             var currentProductGroup = currentDevice.querySelector('.freezing-camera-list');
             var currentNameProduct = currentDevice.querySelector('.name-product-freezing').value;
             refrModel.addProduct(idDevice, typeContainer, currentNameProduct);
             currentDevice.querySelector('.name-product-freezing').value = "";
+            view.renderProducts(idDevice, typeContainer);
+        }
 
-            // console.log(idDevice);
-            // console.log(currentDevice);
-            // console.log(currentProductGroup);
-            // console.log(currentNameProduct);
-
-            // view.renderProducts();
-            // self.removeDevice(idDevice);
-            // view.renderDevices();
+        if (event.target.classList.contains('remove-product')) {
+            var targetDeviceId = parseInt(event.target.closest('.refr-container').id);
+            var targetCamera = event.target.closest('ul').className;
+            var targetProductId = parseInt(event.target.closest('li').id);
+            refrModel.removeProduct(targetDeviceId, targetCamera, targetProductId);
+            view.renderProducts(targetDeviceId, targetCamera);
         }
     });
 }
@@ -121,41 +110,3 @@ Controller.prototype.editDevices = function(idDevice, buttonDevice) {
 Controller.prototype.removeDevice = function(idDevice) {
     creator.removeDevice(idDevice);
 }
-
-
-//  if (idDevice === item._id) {
-//             switch (buttonDevice) {
-//                 case 'power':
-//                     tvModel.turnOnOff();
-//                     // view.renderTvInfo();
-//                     break;
-//                 case 'volumeUp':
-//                     if (tvModel.isOn === true) {
-//                         tvModel.volumeUp();
-//                         // view.renderTvInfo();
-//                     }
-//                     break;
-//                 case 'volumeDown':
-//                     if (tvModel.isOn === true) {
-//                         tvModel.volumeDown();
-//                         // view.renderTvInfo();
-//                     }
-//                     break;
-//                 case 'volumeOff':
-//                     if (tvModel.isOn === true) {
-//                         tvModel.volumeOff();
-//                         // view.renderTvInfo();
-//                     }
-//                     break;
-//                 case 'nextChannel':
-//                     if (tvModel.isOn === true) {
-//                         tvModel.nextChannel();
-//                         // view.renderTvInfo();
-//                     }
-//                     break;
-//                 case 'prevChannel':
-//                     if (tvModel.isOn === true) {
-//                         tvModel.prevChannel();
-//                         // view.renderTvInfo();
-//                     }
-//                     break;

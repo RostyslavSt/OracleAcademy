@@ -26,6 +26,10 @@
         cursor: pointer
     }
     
+    .remove-product {
+        cursor: pointer
+    }
+    
     .refr-container {
         padding: 3px;
         border: 1px solid #000;
@@ -53,6 +57,13 @@
     
     .fa-snowflake-o {
         color: blue;
+    }
+    
+    .item-product {
+        margin: 4px 0;
+        max-width: 200px;
+        border-radius: 5px;
+        border: 1px dashed #000;
     }
     /*.tv {
     max-width: 50%;

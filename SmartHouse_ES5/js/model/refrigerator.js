@@ -6,10 +6,6 @@ function Refrigerator(name, coolingBox, freezingBox) {
     baseClass.apply(this, [name]);
     this._type = 'refrigerator';
     this.temperature = 5;
-    // this.products = [{
-    //     nameProduct: 'potatoes',
-    //     idProduct: 1111111
-    // }];
     this.coolingCamera = coolingBox;
     this.freezingCamera = freezingBox;
 
@@ -27,23 +23,38 @@ Refrigerator.prototype.addProduct = function(idDevice, typeContainer, nameProduc
     creator.devices.forEach(function(item) {
         if (item._id === idDevice) {
             switch (typeContainer) {
-                case ('coolingCamera'):
+                case ('cooling-camera-list'):
                     item.coolingCamera.products.push(newProduct);
                     break;
-                case ('freezingCamera'):
+                case ('freezing-camera-list'):
                     item.freezingCamera.products.push(newProduct);
                     break;
             }
-            // item.products.push(newProduct);
         }
     });
 }
 
-Refrigerator.prototype.removeProduct = function(idProduct) {
-    this.products.forEach(function(item, index) {
-        if (idProduct === item.id) {
-            this.products.splice(index, 1);
+Refrigerator.prototype.removeProduct = function(targetDeviceId, targetCamera, targetProductId) {
+    creator.devices.forEach(function(item, index) {
+        if (targetDeviceId === item._id) {
+            switch (targetCamera) {
+                case ('cooling-camera-list'):
+                    item.coolingCamera.products.forEach(function(itemModel, index) {
+                        if (targetProductId === itemModel.idProduct) {
+                            item.coolingCamera.products.splice(index, 1);
+                        }
+                    });
+                    break;
+                case ('freezing-camera-list'):
+                    item.freezingCamera.products.forEach(function(itemModel, index) {
+                        if (targetProductId === itemModel.idProduct) {
+                            item.freezingCamera.products.splice(index, 1);
+                        }
+                    });
+                    break;
+            }
         }
+        // debugger;
     });
 
 }
@@ -70,6 +81,3 @@ function CoolingBox() {
 function FreezingBox() {
     this.products = [];
 }
-
-// var coolingBox = new CoolingBox();
-// var freezingBox = new FreezingBox();
