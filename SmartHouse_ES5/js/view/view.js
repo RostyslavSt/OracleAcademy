@@ -59,6 +59,9 @@ View.prototype.renderDevices = function() {
         }
     }).bind(this));
     this.deviceList.innerHTML = groupDevices;
+    console.log(this.buttonCreator)
+    // this.buttonCreator.innerHTML = "";
+
 }
 
 // in this method we synс model and view

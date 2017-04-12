@@ -6,6 +6,7 @@ function Controller(tvModel, refrModel, view, creator) {
     view.buttonCreator.addEventListener('click', function(event) {
         creator.designDevice(view.typeDevice.value, view.nameDevice.value);
         view.renderDevices();
+        
     });
 
     view.deviceList.addEventListener('click', function(event) {

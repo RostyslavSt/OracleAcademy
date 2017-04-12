@@ -48,8 +48,9 @@ function Templates() {
     </li>`;
 
     this.productContainer = `<li class="item-product" id={{id-product}}>
-        <div class="remove-product-block"><div class="remove-product glyphicon glyphicon-remove"></div></div>
         <p class="name-product">{{name-product}}</p>
+        <div class="remove-product-block"><div class="remove-product glyphicon glyphicon-remove"></div></div>
+        
     </li>`;
 };
 

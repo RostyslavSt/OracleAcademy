@@ -60,6 +60,9 @@
     }
     
     .item-product {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px;
         margin: 4px 0;
         max-width: 200px;
         border-radius: 5px;
