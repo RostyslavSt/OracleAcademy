@@ -26,6 +26,17 @@ View.prototype.renderDevices = function() {
                     .replace('{{tv-id}}', item._id)
                     .replace('{{tv-name}}', item.name)
                     .replace('{{tv-info}}', item.toString());
+                //onOff buttons
+
+                if (item.isOn === false) {
+                    while (oneDeviceContent.indexOf('{{') > 0) {
+                        oneDeviceContent = oneDeviceContent.replace('{{disabled}}', 'disabled');
+                    }
+                } else {
+                    while (oneDeviceContent.indexOf('{{') > 0) {
+                        oneDeviceContent = oneDeviceContent.replace('{{disabled}}', '');
+                    }
+                }
                 groupDevices += oneDeviceContent;
                 break;
             case 'refrigerator':
@@ -54,13 +65,23 @@ View.prototype.renderDevices = function() {
                     .replace('{{refr-info}}', item.toString())
                     .replace('{{cooling-camera-list}}', outputCoolingProducts)
                     .replace('{{freezing-camera-list}}', outputFreezingProducts);
+                //onOff buttons
+                if (item.isOn === false) {
+                    while (oneDeviceContent.indexOf('{{') > 0) {
+                        oneDeviceContent = oneDeviceContent.replace('{{disabled}}', 'disabled');
+                    }
+                } else {
+                    while (oneDeviceContent.indexOf('{{') > 0) {
+                        oneDeviceContent = oneDeviceContent.replace('{{disabled}}', '');
+                    }
+                }
                 groupDevices += oneDeviceContent;
                 break;
         }
     }).bind(this));
     this.deviceList.innerHTML = groupDevices;
     console.log(this.buttonCreator)
-    // this.buttonCreator.innerHTML = "";
+        // this.buttonCreator.innerHTML = "";
 
 }
 
@@ -95,4 +116,16 @@ View.prototype.renderProducts = function(idDevice, typeContainer) {
         groupProducts += oneProductContent;
     }).bind(this));
     currentCameraList.innerHTML = groupProducts;
+}
+
+View.prototype.onOffButtons = function(idDevice) {
+    var currentDevice = document.getElementById(idDevice);
+    var buttonsDevice = currentDevice.querySelectorAll('button');
+    buttonsDevice.forEach(function(item) {
+
+        // if (!item.classList.contains('power')) {
+        //     item.classList.toggle('disabled');
+        // }
+    });
+    console.log(idDevice);
 }

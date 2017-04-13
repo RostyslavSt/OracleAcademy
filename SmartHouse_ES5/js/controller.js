@@ -6,20 +6,20 @@ function Controller(tvModel, refrModel, view, creator) {
     view.buttonCreator.addEventListener('click', function(event) {
         creator.designDevice(view.typeDevice.value, view.nameDevice.value);
         view.renderDevices();
-        
+
     });
 
     view.deviceList.addEventListener('click', function(event) {
 
         var idDevice = parseInt(event.target.closest('li').id);
-        var buttonDevice = event.target.getAttribute('name');
+        var buttonDeviceName = event.target.getAttribute('name');
 
         //there we handle with devices
         if (event.target.classList.contains('remove-device')) {
             creator.removeDevice(idDevice);
             view.renderDevices();
         }
-        self.editDevices(idDevice, buttonDevice);
+        self.editDevices(idDevice, buttonDeviceName);
 
         //there we handle with refrigarator containers(products)
         if (event.target.classList.contains('add-product-cooling')) {
@@ -52,14 +52,15 @@ function Controller(tvModel, refrModel, view, creator) {
     });
 }
 
-Controller.prototype.editDevices = function(idDevice, buttonDevice) {
+Controller.prototype.editDevices = function(idDevice, buttonDeviceName) {
     creator.devices.forEach(function(item) {
         // debugger;
         if (idDevice === item._id) {
-            switch (buttonDevice) {
+            switch (buttonDeviceName) {
                 case 'power':
                     item.turnOnOff();
                     view.renderDevices();
+                    view.onOffButtons(idDevice);
                     break;
                 case 'volumeUp':
                     if (item.isOn === true) {

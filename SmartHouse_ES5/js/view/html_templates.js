@@ -7,11 +7,11 @@ function Templates() {
         <p class="tv-name">{{tv-name}}</p>
         <p class="tv-info">{{tv-info}}</p>
         <button type="button" name="power" class="power btn btn-danger btn-xs"><i class="fa fa-power-off" aria-hidden="true"></i> Power</button>
-        <button type="button" name="volumeUp" class="volumeUp btn btn-success btn-xs glyphicon glyphicon-volume-up" disable></button>
-        <button type="button" name="volumeDown" class="volumeDown btn btn-success btn-xs glyphicon glyphicon-volume-down"></i></button>
-        <button type="button" name="volumeOff" class="volumeOff btn btn-success btn-xs glyphicon glyphicon-volume-off"></i></button>
-        <button type="button" name="prevChannel" class="prevChannel btn btn-primary btn-xs glyphicon glyphicon-step-backward"></button>
-        <button type="button" name="nextChannel" class="nextChannel btn btn-primary btn-xs glyphicon glyphicon-step-forward"></button>
+        <button type="button" name="volumeUp" class="volumeUp btn btn-success btn-xs glyphicon glyphicon-volume-up {{disabled}}"></button>
+        <button type="button" name="volumeDown" class="volumeDown btn btn-success btn-xs glyphicon glyphicon-volume-down {{disabled}}"></i></button>
+        <button type="button" name="volumeOff" class="volumeOff btn btn-success btn-xs glyphicon glyphicon-volume-off {{disabled}}"></i></button>
+        <button type="button" name="prevChannel" class="prevChannel btn btn-primary btn-xs glyphicon glyphicon-step-backward {{disabled}}"></button>
+        <button type="button" name="nextChannel" class="nextChannel btn btn-primary btn-xs glyphicon glyphicon-step-forward {{disabled}}"></button>
     </li>`;
     this.refr = `<li class="refr-container" id="{{refr-id}}">
         <div class="remove-device-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
@@ -25,7 +25,7 @@ function Templates() {
         </p>
         <div class="cooling-camera-container">
             <input class="name-product-cooling" type="text" placeholder="Enter name of product">
-            <button class="add-product-cooling">Add product</button>
+            <button type="button" class="add-product-cooling btn btn-sm btn-info {{disabled}}">Add product</button>
             <ul class="cooling-camera-list">
                 {{cooling-camera-list}}
             </ul>
@@ -37,14 +37,14 @@ function Templates() {
         </p>
         <div class="freezing-camera-container">
             <input class="name-product-freezing" type="text" placeholder="Enter name of product">
-            <button class="add-product-freezing">Add product</button>
+            <button type="button" class="add-product-freezing btn btn-sm btn-info {{disabled}}">Add product</button>
             <ul class="freezing-camera-list">
                 {{freezing-camera-list}}
             </ul>
         </div>
         <button type="button" name="power" class="power btn btn-danger btn-xs"><i class="fa fa-power-off" aria-hidden="true"></i> Power</button>
-        <button type="button" name="tempUp" class="tempUp btn btn-success btn-xs glyphicon glyphicon-plus" disable></button>
-        <button type="button" name="tempDown" class="tempDown btn btn-success btn-xs glyphicon glyphicon-minus"></i></button>
+        <button type="button" name="tempUp" class="tempUp btn btn-success btn-xs glyphicon glyphicon-plus {{disabled}}" disable></button>
+        <button type="button" name="tempDown" class="tempDown btn btn-success btn-xs glyphicon glyphicon-minus {{disabled}}"></i></button>
     </li>`;
 
     this.productContainer = `<li class="item-product" id={{id-product}}>

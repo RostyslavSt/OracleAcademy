@@ -22,13 +22,15 @@ Refrigerator.prototype.addProduct = function(idDevice, typeContainer, nameProduc
     newProduct.idProduct = Date.now() - 10000;
     creator.devices.forEach(function(item) {
         if (item._id === idDevice) {
-            switch (typeContainer) {
-                case ('cooling-camera-list'):
-                    item.coolingCamera.products.push(newProduct);
-                    break;
-                case ('freezing-camera-list'):
-                    item.freezingCamera.products.push(newProduct);
-                    break;
+            if (item.isOn === true) {
+                switch (typeContainer) {
+                    case ('cooling-camera-list'):
+                        item.coolingCamera.products.push(newProduct);
+                        break;
+                    case ('freezing-camera-list'):
+                        item.freezingCamera.products.push(newProduct);
+                        break;
+                }
             }
         }
     });
