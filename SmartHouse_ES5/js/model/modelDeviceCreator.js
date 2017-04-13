@@ -7,7 +7,7 @@ CreateDevice.prototype.designDevice = function(type, name) {
     var newDevice = null;
     switch (type) {
         case 'tv':
-            newDevice = new Tv(name);
+            newDevice = new Tv(name, listChannels);
             this.devices.push(newDevice);
             break;
         case 'refrigerator':

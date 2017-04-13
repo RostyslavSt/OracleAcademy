@@ -22,12 +22,24 @@ View.prototype.renderDevices = function() {
     creator.devices.forEach((function(item) {
         switch (item._type) {
             case 'tv':
+                //status tv
                 oneDeviceContent = this.templateTv
                     .replace('{{tv-id}}', item._id)
                     .replace('{{tv-name}}', item.name)
                     .replace('{{tv-info}}', item.toString());
-                //onOff buttons
 
+                //tv chhanels
+                if (item.isOn === true) {
+                    oneDeviceContent = oneDeviceContent
+                        .replace('{{current-channel}}', 'background-image: url(img/discovery_channel.jpg)')
+                        .replace('{{indicator-color}}', 'border: 3px solid green');
+                } else {
+                    oneDeviceContent = oneDeviceContent
+                        .replace('{{current-channel}}', '')
+                        .replace('{{indicator-color}}', '');
+                }
+
+                //onOff buttons
                 if (item.isOn === false) {
                     while (oneDeviceContent.indexOf('{{') > 0) {
                         oneDeviceContent = oneDeviceContent.replace('{{disabled}}', 'disabled');
@@ -80,9 +92,6 @@ View.prototype.renderDevices = function() {
         }
     }).bind(this));
     this.deviceList.innerHTML = groupDevices;
-    console.log(this.buttonCreator)
-        // this.buttonCreator.innerHTML = "";
-
 }
 
 // in this method we synс model and view
@@ -123,9 +132,7 @@ View.prototype.onOffButtons = function(idDevice) {
     var buttonsDevice = currentDevice.querySelectorAll('button');
     buttonsDevice.forEach(function(item) {
 
-        // if (!item.classList.contains('power')) {
-        //     item.classList.toggle('disabled');
-        // }
+
     });
     console.log(idDevice);
 }

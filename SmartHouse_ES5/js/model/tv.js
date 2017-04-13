@@ -3,24 +3,33 @@
 function Tv(name, listChannel) {
     baseClass.apply(this, [name]);
     this._type = 'tv';
-    this.listChannel = listChannel || ['discovery', 'sport', 'science', 'education', 'music', 'fishing', 'motosport', 'formula 1'];;
+    this.listChannel = listChannel || [{
+            name: 'discovery',
+            path: '../../img/discovery_channel.jpg'
+        },
+        {
+            name: 'sport',
+            path: '../../img/sport.jpg'
+        },
+    ];
     this.currentChannel = 0;
     this.volume = 4;
 }
 Tv.prototype = Object.create(baseClass.prototype);
 Tv.prototype.constructor = Tv;
 Tv.prototype.nextChannel = function() {
-    if (this.currentChannel === this.listChannel.length - 1) {
+    if (this.currentChannel === this.listChannel.channels.length - 1) {
         this.currentChannel = 0;
-        return this.currentChannel + ': ' + this.listChannel[this.currentChannel];
+        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     } else {
         this.currentChannel++;
-        return this.currentChannel + ': ' + this.listChannel[this.currentChannel];
+        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     }
 }
 Tv.prototype.prevChannel = function() {
     if (this.currentChannel === 0) {
-        this.currentChannel = this.listChannel.length - 1;
+        this.currentChannel = this.listChannel.channels.length - 1;
+        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     } else {
         this.currentChannel--;
     }
@@ -36,5 +45,6 @@ Tv.prototype.volumeOff = function() {
     this.volume = 0;
 }
 Tv.prototype.toString = function() {
-    return `State: ${this.isOn}, Volume: ${this.volume}, Current channel: ${this.currentChannel}: ${this.listChannel[this.currentChannel]}`;
+    // debugger;
+    return `State: ${this.isOn}, Volume: ${this.volume}, Current channel: ${this.currentChannel}: ${this.listChannel.channels[this.currentChannel].name}`;
 }

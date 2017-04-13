@@ -4,6 +4,14 @@ function Templates() {
     this.tv = `<li class="tv-container" id="{{tv-id}}">
         <div class="remove-device-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
         <h2 class="tv-header">TV</h2>
+        <div class="tv-box">
+            <div class="tv-screen">
+                <div class="img-styles" style="{{current-channel}}"></div>
+            </div>
+            <div class="tv-bottom">
+                <div class="tv-indicator" style="{{indicator-color}}"></div>
+            </div>
+        </div>
         <p class="tv-name">{{tv-name}}</p>
         <p class="tv-info">{{tv-info}}</p>
         <button type="button" name="power" class="power btn btn-danger btn-xs"><i class="fa fa-power-off" aria-hidden="true"></i> Power</button>

@@ -60,7 +60,7 @@ Controller.prototype.editDevices = function(idDevice, buttonDeviceName) {
                 case 'power':
                     item.turnOnOff();
                     view.renderDevices();
-                    view.onOffButtons(idDevice);
+                    // view.onOffButtons(idDevice);
                     break;
                 case 'volumeUp':
                     if (item.isOn === true) {
