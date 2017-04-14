@@ -20,20 +20,16 @@ Tv.prototype.constructor = Tv;
 Tv.prototype.nextChannel = function() {
     if (this.currentChannel === this.listChannel.channels.length - 1) {
         this.currentChannel = 0;
-        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     } else {
         this.currentChannel++;
-        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     }
 }
 Tv.prototype.prevChannel = function() {
     if (this.currentChannel === 0) {
         this.currentChannel = this.listChannel.channels.length - 1;
-        return this.currentChannel + ': ' + this.listChannel.channels[this.currentChannel].name;
     } else {
         this.currentChannel--;
     }
-
 }
 Tv.prototype.volumeUp = function() {
     this.volume++;

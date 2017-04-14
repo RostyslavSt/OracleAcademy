@@ -2,21 +2,38 @@
 
 // ['discovery', 'sport', 'science', 'education', 'music', 'fishing', 'motosport', 'formula 1'];
 function TvChannels() {
+    this.mainPath = './img/';
     this.channels = [{
             name: 'discovery',
-            path: '../../img/discovery_channel.jpg'
+            path: this.mainPath + 'discovery_channel.jpg'
         },
         {
             name: 'sport',
-            path: '../../img/sport.jpg'
+            path: this.mainPath + 'sport.jpg'
         },
         {
             name: 'science',
-            path: '../../img/science.jpg'
+            path: this.mainPath + 'science.jpg'
         },
         {
             name: 'education',
-            path: '../../img/Education-channel.jpg'
+            path: this.mainPath + 'Education-channel.jpg'
+        },
+        {
+            name: 'music',
+            path: this.mainPath + 'music.jpg'
+        },
+        {
+            name: 'fishing',
+            path: this.mainPath + 'fishing.jpg'
+        },
+        {
+            name: 'motosport',
+            path: this.mainPath + 'motosport.jpg'
+        },
+        {
+            name: 'formula 1',
+            path: this.mainPath + 'formula1.jpg'
         },
 
     ]

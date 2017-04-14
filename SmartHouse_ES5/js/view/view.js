@@ -30,8 +30,10 @@ View.prototype.renderDevices = function() {
 
                 //tv chhanels
                 if (item.isOn === true) {
+                    // var channelTv = item.currentChannel;
                     oneDeviceContent = oneDeviceContent
-                        .replace('{{current-channel}}', 'background-image: url(img/discovery_channel.jpg)')
+                        .replace('{{current-channel}}', 'background-image: url(' + item.listChannel.channels[item.currentChannel].path)
+                        // .replace('{{current-channel}}', 'background-image: url(img/discovery_channel' + '.jpg)')
                         .replace('{{indicator-color}}', 'border: 3px solid green');
                 } else {
                     oneDeviceContent = oneDeviceContent
