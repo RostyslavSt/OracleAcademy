@@ -60,18 +60,25 @@ Controller.prototype.editDevices = function(idDevice, buttonDeviceName) {
                 case 'power':
                     item.turnOnOff();
                     view.renderDevices();
+                    if (item.isOn === true) {
+                        view.renderChannel(idDevice);
+                        view.renderVolume(idDevice, item.volume);
+
+                    }
                     // view.onOffButtons(idDevice);
                     break;
                 case 'volumeUp':
                     if (item.isOn === true) {
                         item.volumeUp();
                         view.renderDevices();
+                        view.renderVolume(idDevice, item.volume);
                     }
                     break;
                 case 'volumeDown':
                     if (item.isOn === true) {
                         item.volumeDown();
                         view.renderDevices();
+                        view.renderVolume(idDevice, item.volume);
                     }
                     break;
                 case 'volumeOff':
@@ -84,12 +91,14 @@ Controller.prototype.editDevices = function(idDevice, buttonDeviceName) {
                     if (item.isOn === true) {
                         item.nextChannel();
                         view.renderDevices();
+                        view.renderChannel(idDevice);
                     }
                     break;
                 case 'prevChannel':
                     if (item.isOn === true) {
                         item.prevChannel();
                         view.renderDevices();
+                        view.renderChannel(idDevice);
                     }
                     break;
                 case 'tempUp':

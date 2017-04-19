@@ -35,7 +35,10 @@ Tv.prototype.volumeUp = function() {
     this.volume++;
 }
 Tv.prototype.volumeDown = function() {
-    this.volume--;
+    if (this.volume !== 0) {
+        this.volume--;
+    }
+
 }
 Tv.prototype.volumeOff = function() {
     this.volume = 0;

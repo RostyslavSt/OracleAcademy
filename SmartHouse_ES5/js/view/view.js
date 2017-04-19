@@ -14,6 +14,7 @@ function View(template) {
     this.typeDevice = document.querySelector('.type-device');
     this.nameDevice = document.querySelector('.name-device') || 'no Name';
     this.parentForproducts = document.querySelector('.cooling-camera-list');
+
 }
 View.prototype.renderDevices = function() {
     var groupDevices = "";
@@ -25,16 +26,17 @@ View.prototype.renderDevices = function() {
                 //status tv
                 oneDeviceContent = this.templateTv
                     .replace('{{tv-id}}', item._id)
-                    .replace('{{tv-name}}', item.name)
-                    .replace('{{tv-info}}', item.toString());
+                    .replace('{{tv-name}}', item.name);
+                // .replace('{{tv-info}}', item.toString());
 
                 //tv chhanels
                 if (item.isOn === true) {
                     // var channelTv = item.currentChannel;
                     oneDeviceContent = oneDeviceContent
                         .replace('{{current-channel}}', 'background-image: url(' + item.listChannel.channels[item.currentChannel].path)
-                        // .replace('{{current-channel}}', 'background-image: url(img/discovery_channel' + '.jpg)')
-                        .replace('{{indicator-color}}', 'border: 3px solid green');
+                        .replace('{{indicator-color}}', 'border: 3px solid green')
+                        .replace('channel-number', item.currentChannel + ': ' + item.listChannel.channels[item.currentChannel].name)
+                        .replace('current-volume', item.volume);
                 } else {
                     oneDeviceContent = oneDeviceContent
                         .replace('{{current-channel}}', '')
@@ -137,4 +139,20 @@ View.prototype.onOffButtons = function(idDevice) {
 
     });
     console.log(idDevice);
+}
+View.prototype.renderChannel = function(idDevice) {
+    var currentDevice = document.getElementById(idDevice);
+    var $channelBox = $(currentDevice).find('.channel-box');
+    $channelBox.fadeIn(1000).fadeOut(2000);
+}
+View.prototype.renderVolume = function(idDevice, itemVolume) {
+    var currentDevice = document.getElementById(idDevice);
+    var $volumeBox = $(currentDevice).find('.volume-box');
+    var $volumeBlocks = $(currentDevice).find('.volume-blocks');
+    $volumeBox.fadeIn(300).fadeOut(4000);
+    for (var i = 0; i < itemVolume; i++) {
+        $('<div class="volume-item"></div>').prependTo($volumeBlocks);
+    }
+
+
 }
