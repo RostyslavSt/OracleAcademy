@@ -35,7 +35,18 @@ function TvChannels() {
             name: 'formula 1',
             path: this.mainPath + 'formula1.jpg'
         },
-
+        {
+            name: 'Animals',
+            path: this.mainPath + 'cat.jpg'
+        },
+        {
+            name: 'Films',
+            path: this.mainPath + 'transformers.jpg'
+        },
+        {
+            name: 'Films 2',
+            path: this.mainPath + 'last_knight.jpg'
+        }
     ]
 }
 

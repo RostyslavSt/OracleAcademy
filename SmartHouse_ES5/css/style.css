@@ -5,6 +5,7 @@
         border: 1px solid #000;
         border-radius: 5px;
         margin: 10px 10px;
+        max-width: 800px;
     }
     
     .tv-and-board {
@@ -30,7 +31,6 @@
     
     .volume-buttons {
         display: flex;
-        /*flex-direction: column;*/
         width: 108px;
         justify-content: space-around;
     }
@@ -38,7 +38,6 @@
     .tv-box {
         width: 350px;
         height: 180px;
-        /*margin: 0 auto;*/
         box-sizing: border-box;
     }
     
@@ -58,7 +57,6 @@
     
     .tv-bottom {
         max-width: 100%;
-        /*height: 20%;*/
         margin: 0 auto;
         background-color: #000;
     }
@@ -137,6 +135,7 @@
         border: 1px solid #000;
         border-radius: 5px;
         margin: 10px 10px;
+        max-width: 800px;
     }
     
     .cooling-camera-container {
@@ -170,17 +169,7 @@
         border-radius: 5px;
         border: 1px dashed #000;
     }
-    /*.tv {
-    max-width: 50%;
-    max-height: 50px;
-    border: 2px solid #000;
-    box-sizing: border-box;
-    background-color: #000;
-}
-.tv-screen {
-    max-width: 100%;
-    height: 20px;
-    border: 1px solid #fff;
-    margin: 10px;
-    background-color: #fff;
-}*/
+    
+    .input-height {
+        height: 30px;
+    }
