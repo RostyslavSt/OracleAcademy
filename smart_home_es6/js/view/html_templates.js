@@ -1,7 +1,9 @@
 'use strict';
 
-function Templates() {
-    this.tv = `<li class="tv-container" id="{{tv-id}}">
+class Templates {
+    constructor() {
+
+        this.tv = `<li class="tv-container" id="{{tv-id}}">
         <div class="remove-device-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
         <div class="tv-and-board">
             <div class="tv-box">
@@ -32,7 +34,7 @@ function Templates() {
             </div>
         </div>
     </li>`;
-    this.refr = `<li class="refr-container" id="{{refr-id}}">
+        this.refr = `<li class="refr-container" id="{{refr-id}}">
         <div class="remove-device-block"><p class="remove-device glyphicon glyphicon-remove"></p></div>
         <h2 class="refr-header">Refrigerator</h2>
         <p class="refr-name">{{refr-name}}</p>
@@ -66,11 +68,12 @@ function Templates() {
         <button type="button" name="tempDown" class="tempDown btn btn-success btn-xs glyphicon glyphicon-minus {{disabled}}"></i></button>
     </li>`;
 
-    this.productContainer = `<li class="item-product" id={{id-product}}>
+        this.productContainer = `<li class="item-product" id={{id-product}}>
         <p class="name-product">{{name-product}}</p>
         <div class="remove-product-block"><div class="remove-product glyphicon glyphicon-remove"></div></div>
-        
     </li>`;
+    }
+
 };
 
-var template = new Templates();
+let template = new Templates();
