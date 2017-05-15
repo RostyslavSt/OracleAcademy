@@ -9728,22 +9728,19 @@ var View = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (View.__proto__ || Object.getPrototypeOf(View)).call(this, props));
 
-        _this.state = { name: _this.props.name };
         _this.devicesObj = new _modelDeviceCreator.CreateDevice();
         _this.create = _this.create.bind(_this);
+        _this.state = {
+            devices: _this.devicesObj
+        };
 
         return _this;
     }
 
     _createClass(View, [{
-        key: "testCreate",
-        value: function testCreate() {
-            this.devicesObj.designDevice('tv', 'sony');
-        }
-    }, {
         key: "create",
         value: function create() {
-            this.devicesObj.designDevice('tv', 'samsung');
+            this.state.devices.designDevice('Tv', 'sony');
             console.log(this.devicesObj.devices);
         }
     }, {
@@ -9751,60 +9748,51 @@ var View = function (_React$Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "asaas" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    this.state.name
-                ),
+                { className: "row" },
                 _react2.default.createElement(
                     "div",
-                    { className: "row" },
+                    { className: "panel panel-success col-md-12 col-xs-12 col-lg-12" },
                     _react2.default.createElement(
                         "div",
-                        { className: "panel panel-success col-md-12 col-xs-12 col-lg-12" },
+                        { className: "panel-heading" },
                         _react2.default.createElement(
-                            "div",
-                            { className: "panel-heading" },
+                            "h3",
+                            { className: "panel-title" },
+                            "KITCHEN"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "panel-body" },
+                        _react2.default.createElement("input", { className: "name-device input-height", type: "text", name: "device", value: "", placeholder: "Enter name of device" }),
+                        _react2.default.createElement(
+                            "select",
+                            { name: "typeDevice", className: "type-device input-height" },
                             _react2.default.createElement(
-                                "h3",
-                                { className: "panel-title" },
-                                "KITCHEN"
+                                "option",
+                                { value: "tv" },
+                                "TV"
+                            ),
+                            _react2.default.createElement(
+                                "option",
+                                { value: "refrigerator" },
+                                "Refrigerator"
                             )
                         ),
                         _react2.default.createElement(
+                            "button",
+                            { type: "button", onClick: this.create, className: "add-device-btn input-height" },
+                            "Add device"
+                        ),
+                        _react2.default.createElement(
                             "div",
-                            { className: "panel-body" },
-                            _react2.default.createElement("input", { className: "name-device input-height", type: "text", name: "device", value: "", placeholder: "Enter name of device" }),
+                            { className: "device-wrapper" },
                             _react2.default.createElement(
-                                "select",
-                                { name: "typeDevice", className: "type-device input-height" },
-                                _react2.default.createElement(
-                                    "option",
-                                    { value: "tv" },
-                                    "TV"
-                                ),
-                                _react2.default.createElement(
-                                    "option",
-                                    { value: "refrigerator" },
-                                    "Refrigerator"
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "button",
-                                { type: "button", onClick: this.create, className: "add-device-btn input-height" },
-                                "Add device"
-                            ),
-                            _react2.default.createElement(
-                                "div",
-                                { className: "device-wrapper" },
-                                _react2.default.createElement(
-                                    "ul",
-                                    { className: "device-list" },
-                                    this.devicesObj.devices.map(function (device) {
-                                        return _react2.default.createElement(_tv_template.TvTemplate, { tvId: device._id });
-                                    })
-                                )
+                                "ul",
+                                { className: "device-list" },
+                                this.state.devices.devices.map(function (device) {
+                                    return _react2.default.createElement(_tv_template.TvTemplate, { tvId: device._id });
+                                })
                             )
                         )
                     )

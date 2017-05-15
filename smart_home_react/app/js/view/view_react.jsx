@@ -7,26 +7,22 @@ import { CreateDevice } from "../model/modelDeviceCreator.js";
 class View extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: this.props.name };
         this.devicesObj = new CreateDevice();
         this.create = this.create.bind(this);
+        this.state =
+            {
+                devices: this.devicesObj
+            };
 
-
-    }
-    testCreate() {
-        this.devicesObj.designDevice('tv', 'sony');
     }
 
     create() {
-        this.devicesObj.designDevice('tv', 'samsung');
+        this.state.devices.designDevice('Tv', 'sony');
         console.log(this.devicesObj.devices);
     }
     render() {
-        return (<div className="asaas">
-            <h1>{this.state.name}</h1>
-
+        return (
             <div className="row">
-
                 <div className="panel panel-success col-md-12 col-xs-12 col-lg-12">
                     <div className="panel-heading">
                         <h3 className="panel-title">KITCHEN</h3>
@@ -42,7 +38,7 @@ class View extends React.Component {
                         <div className="device-wrapper">
                             <ul className="device-list">
                                 {
-                                    this.devicesObj.devices.map(
+                                    this.state.devices.devices.map(
                                         (device) => <TvTemplate tvId={device._id} />
                                     )}
 
@@ -51,15 +47,12 @@ class View extends React.Component {
                     </div>
                 </div>
             </div>
-
-        </div>
-
         )
     }
 }
 
 ReactDOM.render(
-    <View mapDevices=""/>,
+    <View mapDevices="" />,
     document.querySelector(".main")
 );
 
