@@ -1,0 +1,32 @@
+{
+  "name": "smart_house_react",
+  "version": "1.0.0",
+  "description": "smart house with React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "build": "./node_modules/.bin/babel ./src -d ./dist"
+  },
+  "author": "rost",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-react": "^6.24.1",
+    "lite-server": "^2.3.0",
+    "webpack": "^2.5.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  }
+}

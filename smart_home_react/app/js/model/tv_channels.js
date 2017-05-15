@@ -1,6 +1,6 @@
-'use stritct';
+'use strict';
 
-class TvChannels {
+export class TvChannels {
     constructor() {
         this.mainPath = './img/';
         this.channels = [{
@@ -52,4 +52,6 @@ class TvChannels {
 
 }
 
-let listChannels = new TvChannels();
+// let listChannels = new TvChannels();
+
+// export { listChannels };

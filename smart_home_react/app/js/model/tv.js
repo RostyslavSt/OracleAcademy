@@ -1,6 +1,7 @@
-'use strict';
+import { BaseClass } from "./baseclass";
+import { listChannels } from "./tv_channels";
 
-class Tv extends BaseClass {
+export class Tv extends BaseClass {
     constructor(name, listChannel) {
         super(name);
         this._type = 'tv';
@@ -46,3 +47,4 @@ class Tv extends BaseClass {
     }
 
 }
+// export { Tv };

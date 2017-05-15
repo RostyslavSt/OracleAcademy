@@ -1,6 +1,14 @@
 "use strict";
 
-class CreateDevice {
+import { BaseClass } from "./baseclass";
+import { TvChannels } from "./tv_channels.js"
+import { Tv } from "./tv";
+// import { Refrigerator } from "./refrigerator";
+// import { FreezingBox } from "./freezing_box";
+// import { CoolingBox } from "./cooling_box";
+
+
+export class CreateDevice {
     constructor() {
         this.devices = [];
     }
@@ -9,7 +17,7 @@ class CreateDevice {
         let newDevice = null;
         switch (type) {
             case 'tv':
-                newDevice = new Tv(name, listChannels);
+                newDevice = new Tv(name, new TvChannels);
                 this.devices.push(newDevice);
                 break;
             case 'refrigerator':

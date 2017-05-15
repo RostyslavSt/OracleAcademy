@@ -11,3 +11,5 @@ class BaseClass {
         this.isOn = !this.isOn;
     }
 }
+
+export { BaseClass };
