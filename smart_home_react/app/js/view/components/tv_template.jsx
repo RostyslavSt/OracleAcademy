@@ -5,22 +5,22 @@ export class TvTemplate extends React.Component {
     constructor(props) {
         super(props);
         this.edit = this.edit.bind(this);
-        this.channelImagePath = {};
+        this.state = {
+            channelImagePath: { backgroundImage: 'url(' + this.props.device.listChannel.channels[this.props.device.currentChannel].path + ')' },
+            // tvIndicatorColor: {border: 3px solid green}
+        }
 
     }
     edit(event) {
         let idDevice = parseInt(event.target.closest('li').id);
         let buttonDeviceName = event.target.getAttribute('name');
-        this.channelImagePath = {
-            backgroundImage: 'url(' + this.props.device.listChannel.channels[this.props.device.currentChannel].path + ')'
-        }
+        this.setState({ channelImagePath: { backgroundImage: 'url(' + this.props.device.listChannel.channels[this.props.device.currentChannel].path + ')' } });
+
         console.log(this.props.device.currentChannel);
 
         if (event.target.classList.contains('remove-device')) {
-            console.log(this.props.creator.devices);
-
-
             this.props.controller.removeDevice(idDevice);
+            console.log(this.props.creator.devices);
 
         }
         // console.log(event.target.classList);
@@ -37,7 +37,7 @@ export class TvTemplate extends React.Component {
             <div className="tv-and-board">
                 <div className="tv-box">
                     <div className="tv-screen">
-                        <div className="img-styles" style={this.channelImagePath}>
+                        <div className="img-styles" style={this.state.channelImagePath}>
                             <div className="channel-box">{this.props.device.currentChannel}</div>
                             <div className="volume-box">
                                 <div className="volume-blocks">{this.props.device.volume}</div>

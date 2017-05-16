@@ -16,7 +16,6 @@ class View extends React.Component {
             {
                 devicesArray: creator.devices
             };
-
     }
 
     create() {
@@ -26,7 +25,6 @@ class View extends React.Component {
     reRender(event) {
         this.setState({ devicesArray: creator.devices });
     }
-
     render() {
         return (
             <div className="row">
