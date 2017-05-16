@@ -8,7 +8,7 @@ import { Tv } from "./tv";
 // import { CoolingBox } from "./cooling_box";
 
 
-export class CreateDevice {
+class CreateDevice {
     constructor() {
         this.devices = [];
     }
@@ -36,3 +36,7 @@ export class CreateDevice {
         });
     }
 }
+
+let creator = new CreateDevice();
+
+export { creator };

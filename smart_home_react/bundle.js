@@ -4764,7 +4764,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var TvChannels = exports.TvChannels = function TvChannels() {
     _classCallCheck(this, TvChannels);
 
-    this.mainPath = './img/';
+    this.mainPath = './app/img/';
     this.channels = [{
         name: 'Funny Cats',
         path: this.mainPath + 'cat.jpg'
@@ -9712,6 +9712,8 @@ var _tv_template = __webpack_require__(86);
 
 var _modelDeviceCreator = __webpack_require__(85);
 
+var _controller = __webpack_require__(188);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9719,6 +9721,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var controller = new _controller.Controller(_modelDeviceCreator.creator);
 
 var View = function (_React$Component) {
     _inherits(View, _React$Component);
@@ -9728,10 +9732,10 @@ var View = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (View.__proto__ || Object.getPrototypeOf(View)).call(this, props));
 
-        _this.devicesObj = new _modelDeviceCreator.CreateDevice();
         _this.create = _this.create.bind(_this);
+        _this.reRender = _this.reRender.bind(_this);
         _this.state = {
-            devices: _this.devicesObj
+            devicesArray: _modelDeviceCreator.creator.devices
         };
 
         return _this;
@@ -9740,8 +9744,13 @@ var View = function (_React$Component) {
     _createClass(View, [{
         key: "create",
         value: function create() {
-            this.state.devices.designDevice('Tv', 'sony');
-            console.log(this.devicesObj.devices);
+            _modelDeviceCreator.creator.designDevice('tv', 'Sony');
+            this.setState({ devicesArray: _modelDeviceCreator.creator.devices });
+        }
+    }, {
+        key: "reRender",
+        value: function reRender(event) {
+            this.setState({ devicesArray: _modelDeviceCreator.creator.devices });
         }
     }, {
         key: "render",
@@ -9772,11 +9781,6 @@ var View = function (_React$Component) {
                                 "option",
                                 { value: "tv" },
                                 "TV"
-                            ),
-                            _react2.default.createElement(
-                                "option",
-                                { value: "refrigerator" },
-                                "Refrigerator"
                             )
                         ),
                         _react2.default.createElement(
@@ -9789,10 +9793,13 @@ var View = function (_React$Component) {
                             { className: "device-wrapper" },
                             _react2.default.createElement(
                                 "ul",
-                                { className: "device-list" },
-                                this.state.devices.devices.map(function (device) {
-                                    return _react2.default.createElement(_tv_template.TvTemplate, { tvId: device._id });
-                                })
+                                { className: "device-list", onClick: this.reRender },
+                                this.state.devicesArray.map(function (device, index) {
+                                    return _react2.default.createElement(_tv_template.TvTemplate, { device: device, creator: _modelDeviceCreator.creator, controller: controller, key: index });
+                                }
+                                /*<TvTemplate device={device} tvId={device._id} creator={creator} controller={controller} key={index} channelNumber={device.currentChannel} volume={device.volume}/>*/
+
+                                )
                             )
                         )
                     )
@@ -9804,7 +9811,7 @@ var View = function (_React$Component) {
     return View;
 }(_react2.default.Component);
 
-_reactDom2.default.render(_react2.default.createElement(View, { mapDevices: "" }), document.querySelector(".main"));
+_reactDom2.default.render(_react2.default.createElement(View, null), document.querySelector(".root"));
 
 // export { View };
 
@@ -9823,6 +9830,8 @@ var _tv = __webpack_require__(33);
 
 var _view_react = __webpack_require__(83);
 
+var _modelDeviceCreator = __webpack_require__(85);
+
 /***/ }),
 /* 85 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -9833,7 +9842,7 @@ var _view_react = __webpack_require__(83);
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.CreateDevice = undefined;
+exports.creator = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -9850,7 +9859,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // import { CoolingBox } from "./cooling_box";
 
 
-var CreateDevice = exports.CreateDevice = function () {
+var CreateDevice = function () {
     function CreateDevice() {
         _classCallCheck(this, CreateDevice);
 
@@ -9888,6 +9897,10 @@ var CreateDevice = exports.CreateDevice = function () {
     return CreateDevice;
 }();
 
+var creator = new CreateDevice();
+
+exports.creator = creator;
+
 /***/ }),
 /* 86 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -9921,18 +9934,44 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var TvTemplate = exports.TvTemplate = function (_React$Component) {
     _inherits(TvTemplate, _React$Component);
 
-    function TvTemplate() {
+    function TvTemplate(props) {
         _classCallCheck(this, TvTemplate);
 
-        return _possibleConstructorReturn(this, (TvTemplate.__proto__ || Object.getPrototypeOf(TvTemplate)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (TvTemplate.__proto__ || Object.getPrototypeOf(TvTemplate)).call(this, props));
+
+        _this.edit = _this.edit.bind(_this);
+        _this.channelImagePath = {};
+
+        return _this;
     }
 
     _createClass(TvTemplate, [{
+        key: "edit",
+        value: function edit(event) {
+            var idDevice = parseInt(event.target.closest('li').id);
+            var buttonDeviceName = event.target.getAttribute('name');
+            this.channelImagePath = {
+                backgroundImage: 'url(' + this.props.device.listChannel.channels[this.props.device.currentChannel].path + ')'
+            };
+            console.log(this.props.device.currentChannel);
+
+            if (event.target.classList.contains('remove-device')) {
+                console.log(this.props.creator.devices);
+
+                this.props.controller.removeDevice(idDevice);
+            }
+            // console.log(event.target.classList);
+            // console.log(this.props.controller.test());
+
+            // console.log(idDevice, buttonDeviceName);
+            this.props.controller.editDevices(idDevice, buttonDeviceName);
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "li",
-                { className: "tv-container", id: this.props.tvId },
+                { className: "tv-container", id: this.props.device._id, onClick: this.edit },
                 _react2.default.createElement(
                     "div",
                     { className: "remove-device-block" },
@@ -9949,11 +9988,11 @@ var TvTemplate = exports.TvTemplate = function (_React$Component) {
                             { className: "tv-screen" },
                             _react2.default.createElement(
                                 "div",
-                                { className: "img-styles", style: this.props.currentChannel },
+                                { className: "img-styles", style: this.channelImagePath },
                                 _react2.default.createElement(
                                     "div",
                                     { className: "channel-box" },
-                                    "channel-number"
+                                    this.props.device.currentChannel
                                 ),
                                 _react2.default.createElement(
                                     "div",
@@ -9961,7 +10000,7 @@ var TvTemplate = exports.TvTemplate = function (_React$Component) {
                                     _react2.default.createElement(
                                         "div",
                                         { className: "volume-blocks" },
-                                        " current-volume"
+                                        this.props.device.volume
                                     )
                                 )
                             )
@@ -9993,23 +10032,23 @@ var TvTemplate = exports.TvTemplate = function (_React$Component) {
                         _react2.default.createElement(
                             "div",
                             null,
-                            _react2.default.createElement("button", { type: "button", name: "volumeOff", className: "volumeOff btn btn-success btn-xs glyphicon glyphicon-volume-off {{disabled}}" })
+                            _react2.default.createElement("button", { type: "button", name: "volumeOff", className: "volumeOff btn btn-success btn-xs glyphicon glyphicon-volume-off {{disabled" })
                         ),
                         _react2.default.createElement(
                             "div",
                             null,
-                            _react2.default.createElement("button", { type: "button", name: "nextChannel", className: "nextChannel btn btn-primary btn-xs glyphicon glyphicon-step-forward {{disabled}}" })
+                            _react2.default.createElement("button", { type: "button", name: "nextChannel", className: "nextChannel btn btn-primary btn-xs glyphicon glyphicon-step-forward {{disabled" })
                         ),
                         _react2.default.createElement(
                             "div",
                             { className: "volume-buttons" },
-                            _react2.default.createElement("button", { type: "button", name: "volumeDown", className: "volumeDown btn btn-success btn-xs glyphicon glyphicon-volume-down {{disabled}}" }),
-                            _react2.default.createElement("button", { type: "button", name: "volumeUp", className: "volumeUp btn btn-success btn-xs glyphicon glyphicon-volume-up {{disabled}}" })
+                            _react2.default.createElement("button", { type: "button", name: "volumeDown", className: "volumeDown btn btn-success btn-xs glyphicon glyphicon-volume-down {{disabled" }),
+                            _react2.default.createElement("button", { type: "button", name: "volumeUp", className: "volumeUp btn btn-success btn-xs glyphicon glyphicon-volume-up {{disabled" })
                         ),
                         _react2.default.createElement(
                             "div",
                             null,
-                            _react2.default.createElement("button", { type: "button", name: "prevChannel", className: "prevChannel btn btn-primary btn-xs glyphicon glyphicon-step-backward {{disabled}}" })
+                            _react2.default.createElement("button", { type: "button", name: "prevChannel", className: "prevChannel btn btn-primary btn-xs glyphicon glyphicon-step-backward {{disabled" })
                         )
                     )
                 )
@@ -22528,6 +22567,122 @@ module.exports = traverseAllChildren;
 
 module.exports = __webpack_require__(19);
 
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Controller = function () {
+    function Controller(creator) {
+        _classCallCheck(this, Controller);
+
+        var self = this;
+        this.creator = creator;
+
+        // view.deviceList.addEventListener('click', (event) => {
+
+        //     let idDevice = parseInt(event.target.closest('li').id);
+        //     let buttonDeviceName = event.target.getAttribute('name');
+
+        //     //there we handle with devices
+        //     if (event.target.classList.contains('remove-device')) {
+        //         creator.removeDevice(idDevice);
+        //         view.renderDevices();
+        //     }
+        //     self.editDevices(idDevice, buttonDeviceName);
+
+        // });
+    }
+
+    _createClass(Controller, [{
+        key: 'editDevices',
+        value: function editDevices(idDevice, buttonDeviceName) {
+            this.creator.devices.forEach(function (item) {
+                if (idDevice === item._id) {
+                    switch (buttonDeviceName) {
+                        case 'power':
+                            item.turnOnOff();
+                            console.log(item.toString());
+
+                            // if (item.isOn === true) {
+                            //     // view.renderChannel(idDevice);
+                            //     // view.renderVolume(idDevice, item.volume);
+                            // }
+                            break;
+                        case 'volumeUp':
+
+                            if (item.isOn === true) {
+                                item.volumeUp();
+                                console.log(item.toString());
+
+                                // view.renderDevices();
+                                // view.renderVolume(idDevice, item.volume);
+                            }
+                            break;
+                        case 'volumeDown':
+                            if (item.isOn === true) {
+                                item.volumeDown();
+                                console.log(item.toString());
+
+                                // view.renderDevices();
+                                // view.renderVolume(idDevice, item.volume);
+                            }
+                            break;
+                        case 'volumeOff':
+                            if (item.isOn === true) {
+                                item.volumeOff();
+                                console.log(item.toString());
+                                //         view.renderDevices();
+                            }
+                            break;
+                        case 'nextChannel':
+                            if (item.isOn === true) {
+                                item.nextChannel();
+                                console.log(item.toString());
+                                // view.renderDevices();
+                                // view.renderChannel(idDevice);
+                            }
+                            break;
+                        case 'prevChannel':
+                            if (item.isOn === true) {
+                                item.prevChannel();
+                                console.log(item.toString());
+                                // view.renderDevices();
+                                // view.renderChannel(idDevice);
+                            }
+                            break;
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'removeDevice',
+        value: function removeDevice(idDevice) {
+            this.creator.removeDevice(idDevice);
+        }
+
+        // test() {
+        //     this.creator.devices[0].volumeUp();
+        //     console.log(this.creator.devices[0].toString());
+        // }
+
+    }]);
+
+    return Controller;
+}();
+
+exports.Controller = Controller;
 
 /***/ })
 /******/ ]);

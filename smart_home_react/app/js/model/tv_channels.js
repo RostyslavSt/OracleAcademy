@@ -2,7 +2,7 @@
 
 export class TvChannels {
     constructor() {
-        this.mainPath = './img/';
+        this.mainPath = './app/img/';
         this.channels = [{
                 name: 'Funny Cats',
                 path: this.mainPath + 'cat.jpg'

@@ -9,8 +9,11 @@ import { Tv } from "./model/tv";
 // import { CreateDevice } from "./model/modelDeviceCreator";
 // import { Templates } from "./view/html_templates";
 import { View } from "./view/view_react.jsx";
-// import { View } from "./view/view.js";
+import { CreateDevice } from "./model/modelDeviceCreator.js"
 // import { Controller } from "./controller";
+
+// let creator = new CreateDevice();
+// let controller = new Controller(creator);
 
 //model objects
 

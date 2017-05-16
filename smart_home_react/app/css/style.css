@@ -83,14 +83,14 @@
     }
     
     .channel-box {
-        display: none;
+        display: block;
         font-size: 16px;
         color: #00FFA9;
         margin-left: 3px;
     }
     
     .volume-box {
-        display: none;
+        display: block;
         color: #00FFA9;
         margin-left: 3px;
         position: absolute;
