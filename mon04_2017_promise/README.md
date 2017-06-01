@@ -9,13 +9,12 @@
 
 Для проверки работы функции, вызовите ее с разными параметрами и после этого добавьте на promise обработчики, которые выведут результат работ promise на экран.
 
-Примеры использования функции:
-
-function createPromiseRandom(min, max, delay) {
-   return new Promise(function (resolve, reject) {
-      // Ваш код
-   });
-}
+Примеры использования функции:  
+function createPromiseRandom(min, max, delay) {  
+    return new Promise(function (resolve, reject) {  
+      // Ваш код  
+   });  
+}  
 let p1 = createPromiseRandom(1, 100, 2000);
 
 p1.then(/* Ваш код */);
